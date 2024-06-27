@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block titular %}
+Videojuegos
+{% endblock titular %}
+
+{% block titulo_2 %}
+<h1>LISTADO DE VIDEOJUEGOS</h1>
+{% endblock titulo_2 %}
+{% block main %}
+<h3>
+    {% if videojuegos %}
+    <ol>
+        {% for videojuego in videojuegos  %}
+        <li> {{videojuego}} |<a href= {% url "eliminar_videojuego" videojuego.id%}>Eliminar</a>|
+        </li>   
+        {% endfor %}
+    </ol>
+{% else %}
+<p>No hay videojuegos creadas.</p>
+{% endif %}
+</h3>
+{% endblock main %}
