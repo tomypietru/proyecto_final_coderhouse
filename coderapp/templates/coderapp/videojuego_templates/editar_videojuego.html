@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block titulo_pagina %}
+Editar Videojuego
+{% endblock titulo_pagina %}
+
+
+{% block h1_header %}
+Editando a {{videojuego}}
+{% endblock h1_header %}
+
+{% block main %}
+
+<form action={% url "editar_videojuego" videojuego.id %} method="POST">
+    {% csrf_token %}
+    
+    
+    {{form}}
+
+    <input type="submit" value="Actualizar"> 
+    
+</form>
+
+{% endblock main %}
+
+

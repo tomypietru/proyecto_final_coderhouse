@@ -17,18 +17,8 @@ CREA TU VIDEOJUEGO!
 <form action={% url "crear" %} method="POST">
     {% csrf_token %}
     <p>
-        {{formulario}}
+        {{form}}
     </p>
-    {% comment %} <p>
-        GENERO:
-    <input type="text" name= "genero" placeholder="Accion, Aventura...">
-    </p>
-    <p>
-        NOMBRE:
-    <input type="text" name= "nombre">
-    </p> {% endcomment %}
-    {% comment %} <a class="btn btn-primary btn-xl text-uppercase" href="">CREAR</a> {% endcomment %}
-    <p>
         <input class="btn btn-primary btn-xl text-uppercase" type="submit" value="CREAR">
     </p>
 </form>

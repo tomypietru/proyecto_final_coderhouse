@@ -5,12 +5,84 @@ INICIO
 {% endblock titular %}
 
 {% block titulo_1 %}
-Bienvenido al creador de videojuegos!
+Bienvenido! Aqui aprenderas sobre videojuegos y a crearlos!! 
 {% endblock titulo_1 %}
 
 {% block titulo_2 %}
-Comienza a crear!
+VIDEOJUEGOS
 {% endblock titulo_2 %}
 
-{% block boton_crear %} class="btn btn-primary btn-xl text-uppercase" href={% url "crear" %}>CREAR{% endblock boton_crear %}
+
+{% block cuerpo %}
+<div class="container">
+    <div class="text-center">
+        <h2 class="section-heading text-uppercase">Informacion sobre Videojuegos</h2>
+        
+    </div>
+    <ul class="timeline">
+        <li>
+            <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/1.jpg" alt="..." /></div>
+            <div class="timeline-panel">
+                <div class="timeline-heading">
+                    
+                    <h4 class="subheading">Historia de los Videojuegos</h4>
+                </div>
+                <div class="timeline-body">
+                    <p class="text-muted">Años 70-80: El nacimiento de los videojuegos se remonta a los primeros juegos de arcade como Pong y Space Invaders, y las consolas caseras como Atari.</p>
+                    <p class="text-muted">Años 90: Esta década vio la transición a gráficos en 3D y la popularidad de consolas como Sega Genesis, Super Nintendo, y la primera PlayStation.</p>
+                    <p class="text-muted">2000s en adelante: Con la llegada de Internet, los videojuegos en línea ganaron popularidad. Consolas como Xbox y PlayStation 2 revolucionaron el mercado, y los juegos para PC también se hicieron más sofisticados.
+                </p></div>
+            </div>
+        </li>
+        <li class="timeline-inverted">
+            <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/2.jpg" alt="..." /></div>
+            <div class="timeline-panel">
+                <div class="timeline-heading">
+                    <h4>Impacto Cultural</h4>
+                    <h5 class="subheading">Los videojuegos han dejado una huella profunda en la cultura moderna:</h5>
+                </div>
+                <div class="timeline-body">
+                    <p class="text-muted">E-sports: La competición de videojuegos se ha convertido en un fenómeno global, con torneos que atraen a millones de espectadores.</p>
+                    <p class="text-muted">Narrativa: Los videojuegos han elevado el arte de la narración interactiva, ofreciendo experiencias inmersivas que combinan guiones complejos y mundos detallados.</p>
+                    <p class="text-muted">Comunidades: Los juegos en línea han creado comunidades globales, permitiendo a los jugadores conectarse y colaborar.</p></div>
+            </div>
+        </li>
+        <li>
+            <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/3.jpg" alt="..." /></div>
+            <div class="timeline-panel">
+                <div class="timeline-heading">
+                    
+                    <h4 class="subheading">Innovación Tecnológica</h4>
+                </div>
+                <div class="timeline-body">
+                    <p class="text-muted">Gráficos y Realidad Virtual (VR): Los avances en gráficos y VR han llevado los videojuegos a niveles de realismo sin precedentes.
+                        <p class="text-muted">Inteligencia Artificial (IA): La IA en los videojuegos ha mejorado la experiencia del usuario, creando personajes y entornos más inteligentes y reactivos.
+                            <p class="text-muted">Plataformas Móviles: La disponibilidad de videojuegos en dispositivos móviles ha democratizado el acceso, permitiendo que más personas disfruten de los juegos en cualquier lugar.</p></div>
+            </div>
+        </li>
+        <li class="timeline-inverted">
+            <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/4.jpg" alt="..." /></div>
+            <div class="timeline-panel">
+                <div class="timeline-heading">
+                    
+                    <h4 class="subheading">Economía de los Videojuegos</h4>
+                </div>
+                <div class="timeline-body">
+                    <p class="text-muted">Mercado Global: La industria de los videojuegos llego a generar más de $150 mil millones de ingresos en un año, superando a las industrias del cine y la música combinadas.
+                        <p class="text-muted">Desarrollo y Publicación: El desarrollo de videojuegos implica a equipos multifuncionales que incluyen diseñadores, programadores, artistas y guionistas. Las plataformas de publicación digital han facilitado la distribución global.
+                            <p class="text-muted">Modelos de Negocio: Desde la compra directa hasta los modelos de negocio freemium y microtransacciones, las formas en que los videojuegos generan ingresos han evolucionado.
+                            </p></div>
+            </div>
+        </li>
+        
+    </ul>
+</div>
+
+{% endblock cuerpo %}
+
+{% block boton_crear %}
+<a style="color: black" class="btn btn-primary btn-xl text-uppercase" href={% url "crear" %}>CREAR</a>
+{% endblock boton_crear %}
+
+
 

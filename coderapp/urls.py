@@ -3,8 +3,8 @@ from coderapp import views
 
 urlpatterns = [
     path("", views.inicio, name="inicio"),
-    path("contacto/", views.contacto, name="contacto"),
-    path("videojuegos/crear/", views.crear, name="crear"),
-    path("videojuegos/lista/",  views.videojuegos, name="videojuegos"),
-    path('eliminar/<int:id>', views.eliminar_videojuego,name='eliminar_videojuego'),
+    path("aboutme/", views.aboutme, name="aboutme"),
+    path("videojuegos/crear/", views.CrearVideoJuego.as_view(), name="crear"),
+    path("videojuegos/lista/",  views.VideoJuegos.as_view(), name="videojuegos"),
+    path('videojuegos/<int:pk>/eliminar/', views.EliminarVideoJuego.as_view() ,name='eliminar_videojuego'),
 ]

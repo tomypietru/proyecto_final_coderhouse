@@ -3,34 +3,45 @@ from coderapp.models import VideoJuego
 from coderapp.forms import CrearVideojuegoFormulario
 
 
+from django.http import HttpResponse
+from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.detail import DetailView
+from .models import VideoJuego
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 def inicio(request):
     return render(request,"coderapp/index.html")
 
+class CrearVideoJuego(CreateView):
+    model = VideoJuego
+    template_name = "coderapp/videojuego_templates/crear_videojuego.html"
+    success_url = reverse_lazy("videojuegos")
+    fields = ["nombre", "genero", "descripcion", "imagen" ]
+   
+
+
+class VideoJuegos(ListView):
+    model = VideoJuego
+    template_name = "coderapp/videojuego_templates/lista_videojuegos.html"
+    context_object_name = "videojuegos"
     
-def crear(request):
-    formulario = CrearVideojuegoFormulario()
-    if request.method == "POST":
-        formulario = CrearVideojuegoFormulario(request.POST)
-        if formulario.is_valid():
-            datos = formulario.cleaned_data
-            videojuego = VideoJuego(nombre=datos.get("nombre"), genero=datos.get("genero"))
-            videojuego.save()
-            return redirect("videojuegos")
-    return render(request, "coderapp/videojuego_templates/crear_videojuego.html", {"formulario": formulario})
+                    # LoginRequiredMixin, 
+class EliminarVideoJuego(DeleteView):
+    model = VideoJuego
+    template_name = "coderapp/videojuego_templates/eliminar_videojuego.html"
+    success_url = reverse_lazy("videojuegos")
 
-
-
-def videojuegos(request):
-    videojuego = VideoJuego.objects.all()
-    return render(request, "coderapp/videojuego_templates/lista_videojuegos.html", {"videojuegos": videojuego})
-    
-def eliminar_videojuego(request,id):
-    videojuego = VideoJuego.objects.get(id=id)
-    videojuego.delete()
-    return redirect('videojuegos')     
+                    # LoginRequiredMixin,
+class EditarVideoJuego(UpdateView):        
+    model = VideoJuego
+    template_name = "coderapp/videojuego_templates/editar_videojuego.html"
+    success_url = reverse_lazy("videojuegos")
+    fields = ["nombre", "genero", "descripcion", "imagen", "fecha"]
+     
     
 
-def contacto(request):
-    return render(request, "coderapp/contacto.html")
+def aboutme(request):
+    return render(request, "coderapp/aboutme.html")
