@@ -38,10 +38,20 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a style="color: black" class="btn btn-primary nav-link" href={% url "crear" %}>CREAR</a></li>
                         <li class="nav-item"><a style="color: orange" class="nav-link" href={% url "videojuegos" %}>Videojuegos</a></li>
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-item"><a style="color: black" class="btn btn-primary nav-link" href={% url "crear" %}>CREAR</a></li>
                         <li class="nav-item"><a class="nav-link" href={% url "aboutme" %}>About Me</a></li>
+                        <li class="nav-item"><a class="nav-link" href={% url "editar_perfil" %}>{{request.user.username}}</a></li>
                     </ul>
+                    <form action={% url "logout" %} method="POST">
+                        {% csrf_token %}                   
+                        <input type="submit" class="btn btn-secondary nav-link text-uppercase" value="Cerrar sesion"> 
+                    </form>
+                    {% else %}
+                        <li class="nav-item"><a style="color: black" class="btn btn-primary" href={% url "login" %}>Iniciar Sesion</a>
+                        <li class="nav-item"><a style="color: black" class="btn btn-warning" href={% url "registro" %}>Registrarse</a>
+                    {% endif %}
                 </div>
             </div>
         </nav>

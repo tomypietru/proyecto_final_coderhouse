@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block titulo_pagina %}
+Registro
+{% endblock titulo_pagina %}
+
+
+{% block h1_header %}
+Registro
+{% endblock h1_header %}
+
+{% block main %}
+
+<form action={% url "registro" %} method="POST">
+    {% csrf_token %}
+    
+    
+    {{formulario}}
+
+    <input type="submit" value="Registrarse"> 
+    
+</form>
+
+{% endblock main %}

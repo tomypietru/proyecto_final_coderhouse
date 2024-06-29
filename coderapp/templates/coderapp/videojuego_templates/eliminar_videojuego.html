@@ -9,7 +9,6 @@ Eliminar Videojuego
 {% endblock titulo_2 %}
 
 {% block main %}
-
 <form action={% url "eliminar_videojuego" videojuego.id %} method="POST">
     {% csrf_token %}
     <p>
