@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block titular %}
+Ver Videojuego
+{% endblock titular %}
+
+
+{% block titulo_2 %}
+<h3>
+    <p>
+        Viendo a: 
+    </p>
+    {{videojuego}}
+</h3>
+{% endblock titulo_2 %}
+
+
+{% block main %}
+<ul>
+    <li>nombre: {{videojuego.nombre}}</li>
+    <li>genero: {{videojuego.genero}}</li>
+    <li>descripcion: 
+        <p> {{videojuego.descripcion}}</p></li>
+    <li>imagen: {{videojuego.imagen}}</li>
+</ul>
+
+{% endblock main %}

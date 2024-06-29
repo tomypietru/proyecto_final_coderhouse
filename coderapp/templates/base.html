@@ -20,10 +20,16 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href={% static "css/styles.css" %} rel="stylesheet" />
+        <!-- Custom CSS for dark transparent navbar -->
+        <style>
+            .navbar-dark.bg-dark-transparent {
+                background-color: rgba(0, 0, 0, 0.8); /* Dark color with 80% opacity */
+            }
+        </style>
     </head>
     <body id="page-top">
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark-transparent fixed-top" id="mainNav">
             <div class="container">
                 <a class="navbar-brand" href="/">Inicio</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,11 +38,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-
-                        <li class="nav-item"><a  style="color: black" class="btn btn-primary nav-link" href={% url "crear" %}>CREAR</a></li>
-                        <li class="nav-item"><a  style="color: orange" class="nav-link" href={% url "videojuegos" %}>Videojuegos</a></li>
+                        <li class="nav-item"><a style="color: black" class="btn btn-primary nav-link" href={% url "crear" %}>CREAR</a></li>
+                        <li class="nav-item"><a style="color: orange" class="nav-link" href={% url "videojuegos" %}>Videojuegos</a></li>
                         <li class="nav-item"><a class="nav-link" href={% url "aboutme" %}>About Me</a></li>
-                        
                     </ul>
                 </div>
             </div>
@@ -59,16 +63,17 @@
                 {% block main %}
                 
                 {% endblock main %}
-
             </main>
-            <a {% block boton_crear %}{% endblock boton_crear %}</a>
-
         </header>
+        
         {% block cuerpo %}
         
         {% endblock cuerpo %}
+        <div class="text-center mt-4">
+            {% block boton_crear %}{% endblock boton_crear %}</a>
+        </div>
          {% comment %} <!-- Services--> {% endcomment %}
-         {% comment %} <section class="page-section" id="services">
+          {% comment %} <section class="page-section" id="services">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Services</h2>
@@ -236,7 +241,7 @@
                     <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase disabled" id="submitButton" type="submit">Send Message</button></div>
                 </form>
             </div>
-        </section>
+        </section> {% endcomment %}
         <!-- Footer-->
         <footer class="footer py-4">
             <div class="container">
@@ -254,5 +259,9 @@
                 </div>
             </div>
         </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src={% static "js/scripts.js" %}></script>
     </body>
-</html> {% endcomment %}
+</html> 

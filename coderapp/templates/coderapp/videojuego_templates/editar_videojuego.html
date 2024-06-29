@@ -1,12 +1,17 @@
 {% extends "base.html" %}
-{% block titulo_pagina %}
+{% block titular %}
 Editar Videojuego
-{% endblock titulo_pagina %}
+{% endblock titular %}
 
 
-{% block h1_header %}
-Editando a {{videojuego}}
-{% endblock h1_header %}
+{% block titulo_2 %}
+<h3>
+    <p>
+        Editando a: 
+    </p>
+    {{videojuego}}
+</h3>
+{% endblock titulo_2 %}
 
 {% block main %}
 

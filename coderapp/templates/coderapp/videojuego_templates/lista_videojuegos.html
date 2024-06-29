@@ -15,7 +15,8 @@ Videojuegos
         <li> {{videojuego}} |
             <a href= {% url "eliminar_videojuego" videojuego.id%}>Eliminar</a>|
             <a href= {% url "editar_videojuego" videojuego.id%}>Editar</a> |
-
+            <a href= {% url "ver_videojuego" videojuego.id%}>Ver</a> |
+            
         </li>   
         {% endfor %}
     </ol>

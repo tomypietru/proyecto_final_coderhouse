@@ -10,7 +10,8 @@ from django.views.generic.detail import DetailView
 from .models import VideoJuego
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-# Create your views here.
+from datetime import datetime
+
 
 def inicio(request):
     return render(request,"coderapp/index.html")
@@ -19,7 +20,7 @@ class CrearVideoJuego(CreateView):
     model = VideoJuego
     template_name = "coderapp/videojuego_templates/crear_videojuego.html"
     success_url = reverse_lazy("videojuegos")
-    fields = ["nombre", "genero", "descripcion", "imagen" ]
+    fields = ["nombre", "genero", "descripcion", "imagen"]
    
 
 
@@ -39,9 +40,12 @@ class EditarVideoJuego(UpdateView):
     model = VideoJuego
     template_name = "coderapp/videojuego_templates/editar_videojuego.html"
     success_url = reverse_lazy("videojuegos")
-    fields = ["nombre", "genero", "descripcion", "imagen", "fecha"]
+    fields = ["nombre", "genero", "descripcion", "imagen"]
      
-    
+class VerVideoJuego(DetailView):
+    model = VideoJuego
+    template_name = "coderapp/videojuego_templates/ver_videojuego.html"
+     
 
 def aboutme(request):
     return render(request, "coderapp/aboutme.html")
