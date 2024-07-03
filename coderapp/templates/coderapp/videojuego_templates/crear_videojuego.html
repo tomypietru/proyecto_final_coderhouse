@@ -14,13 +14,12 @@ CREA TU VIDEOJUEGO!
 {% endblock titulo_2 %}         
 
 {% block main %}
-<form action={% url "crear" %} method="POST">
+<form action={% url "crear" %} method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <p>
-        {{form}}
-    </p>
-        <input class="btn btn-primary btn-xl text-uppercase" type="submit" value="CREAR">
-    </p>
+    {{ formulario.as_p }}
+    
+    <input class="btn btn-primary btn-xl text-uppercase" type="submit" value="CREAR">
+    
 </form>
 {% endblock main %}
 

@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block titular %}
 Ver Videojuego
 {% endblock titular %}
@@ -21,7 +23,43 @@ Ver Videojuego
     <li>genero: {{videojuego.genero}}</li>
     <li>descripcion: 
         <p> {{videojuego.descripcion}}</p></li>
-    <li>imagen: {{videojuego.imagen}}</li>
+    <li>fecha: {{videojuego.fecha}}</li>    
+    <li>imagen:</li>
+    {% if videojuego.imagen %}
+        <img src={{ videojuego.imagen.url }} alt={{ videojuego.nombre }} height="500px">
+    {% else %}
+    <img src={% static 'images/no_image.jpg' %} alt={{ videojuego.nombre }} height="500px">    
+    {% endif %}
 </ul>
-
 {% endblock main %}
+{% block cuerpo %}
+<h3>Comentarios</h3>
+{% for comentario in comentarios %}
+    <div>
+        <p>{{ comentario.autor.username }}: {{ comentario.texto }}</p>
+        {% if request.user == comentario.autor %}
+            <form method="post" action="{% url 'ver_videojuego' videojuego.pk %}">
+                {% csrf_token %}
+                <input type="hidden" name="comentario_id" value="{{ comentario.pk }}">
+                <input type="hidden" name="action" value="edit">
+                <textarea name="texto">{{ comentario.texto }}</textarea>
+                <button type="submit">Guardar</button>
+            </form>
+            <form method="post" action="{% url 'ver_videojuego' videojuego.pk %}">
+                {% csrf_token %}
+                <input type="hidden" name="comentario_id" value="{{ comentario.pk }}">
+                <input type="hidden" name="action" value="delete">
+                <button type="submit">Eliminar</button>
+            </form>
+        {% endif %}
+    </div>
+{% endfor %}
+
+<h3>Añadir un comentario</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Añadir comentario</button>
+</form>
+{% endblock cuerpo %}
+

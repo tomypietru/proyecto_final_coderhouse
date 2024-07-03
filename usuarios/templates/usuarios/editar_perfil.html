@@ -1,16 +1,16 @@
 {% extends "base.html" %}
-{% block titulo_pagina %}
+{% block titular %}
 Editar Perfil
-{% endblock titulo_pagina %}
+{% endblock titular %}
 
 
-{% block h1_header %}
+{% block titulo_2 %}
 Editar Perfil
-{% endblock h1_header %}
+{% endblock titulo_2 %}
 
 {% block main %}
 
-<form action={% url "editar_perfil" %} method="POST">
+<form action={% url "editar_perfil" %} method="POST" enctype='multipart/form-data'>
     {% csrf_token %}
     
     
@@ -20,6 +20,6 @@ Editar Perfil
     
 </form>
 
-<a href={% url "cambiar_pass" %}>Cambiar Contraseña</a>
+{% comment %} <a href={% url "cambiar_pass" %}>Cambiar Contraseña</a> {% endcomment %}
 
 {% endblock main %}

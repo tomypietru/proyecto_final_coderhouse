@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block main %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card bg-dark">
+                <div class="card-header text-center">User Profile</div>
+                <div class="card-body">
+                    {% if user.datosextra.avatar %}
+                    <img src="{{ user.datosextra.avatar.url }}" alt="Avatar" class="avatar" height="364px">
+                    {% else %}
+                    <img src="{% static 'images/default_avatar.png' %}" class="avatar" alt="Default avatar" height="364px">
+                    {% endif %}
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>Username:</strong> {{ user.username }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Email:</strong> {{ user.email }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Nombre:</strong> {{ user.first_name }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Apellido:</strong> {{ user.last_name }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Unido:</strong> {{ user.date_joined|date:"F d, Y" }}
+                        </li>
+                    </ul>
+                    <a href="{% url 'editar_perfil' %}" class="btn btn-primary mt-3">Editar perfil</a>
+                    <a href="{% url 'cambiar_pass' %}" class="btn btn-secondary mt-3">Cambiar contraseña</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main %}

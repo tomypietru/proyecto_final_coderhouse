@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 from django.contrib.auth import authenticate, login as django_login
-from usuarios.forms import NuestroFormularioDeCreacion, EditarPerfil
+from usuarios.forms import NuestroFormularioDeCreacion, EditarPerfil, VerPerfilForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView
@@ -42,27 +42,35 @@ def registro(request):
     return render(request, 'usuarios/registro.html', {'formulario': formulario})
 
 @login_required
+def ver_perfil(request):
+    datosextra, created = DatosExtra.objects.get_or_create(user=request.user)
+    form = VerPerfilForm(instance=datosextra)
+    return render(request, 'usuarios/ver_perfil.html', {'form': form})
+
+
+@login_required
 def editar_perfil(request):
-    
+
     datosextra = request.user.datosextra
     formulario = EditarPerfil(initial={'avatar': datosextra.avatar}, instance=request.user)
-    
+
     if request.method == "POST":
         formulario = EditarPerfil(request.POST, request.FILES , instance=request.user)
         if formulario.is_valid():
-            
-            
-            datosextra.avatar = formulario.cleaned_data.get('avatar')
-            datosextra.save()
-            
             formulario.save()
-            return redirect('editar_perfil')
-    
+            avatar = formulario.cleaned_data.get('avatar')
+            if avatar:
+                datosextra.avatar = avatar
+            datosextra.save()
+            return redirect('ver_perfil')
+
+    else:
+        formulario = EditarPerfil(instance=request.user)
     return render(request, 'usuarios/editar_perfil.html', {'formulario': formulario})
 
 class CambiarPassword(LoginRequiredMixin, PasswordChangeView):
     template_name = "usuarios/cambiar_pass.html"
-    success_url = reverse_lazy("editar_perfil")
+    success_url = reverse_lazy("ver_perfil")
     
     
     

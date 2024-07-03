@@ -15,7 +15,7 @@ Editar Videojuego
 
 {% block main %}
 
-<form action={% url "editar_videojuego" videojuego.id %} method="POST">
+<form action={% url "editar_videojuego" videojuego.id %} method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     
     
