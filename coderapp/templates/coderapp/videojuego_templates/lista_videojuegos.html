@@ -5,25 +5,40 @@ Videojuegos
 {% endblock titular %}
 
 {% block titulo_2 %}
-<h1>LISTADO DE VIDEOJUEGOS</h1>
-{% endblock titulo_2 %}
-{% block main %}
-<h3>
-    {% if videojuegos %}
-    <ol>
-        {% for videojuego in videojuegos  %}
-        <li> {{videojuego}} |
-            <a href="{% url 'ver_videojuego' videojuego.id %}">Ver</a> |
-            {% if videojuego.user == request.user %}
-                <a href="{% url 'eliminar_videojuego' videojuego.id %}">Eliminar</a> |
-                <a href="{% url 'editar_videojuego' videojuego.id %}">Editar</a> |
-            {% endif %}
-        </li>   
-        {% endfor %}
-    </ol>
-{% else %}
-<p>No hay videojuegos creados.</p>
-{% endif %}
-</h3>
-{% endblock main %}
+<h2
+    class="text-center my-4">mira los videojuegos creados por la comunidad y opina!
+</h2>
 
+{% endblock titulo_2 %}
+
+{% block titulo_1 %}
+<h1 class="text-center my-4">Listado de Videojuegos</h1>
+{% endblock titulo_1 %}
+
+{% block main %}
+<div class="container">
+    {% if videojuegos %}
+        <div class="row">
+            {% for videojuego in videojuegos %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color:black">{{ videojuego.nombre }}</h5>
+                            <p class="card-text" style="color:black">{{ videojuego.descripcion|truncatewords:20 }}</p>
+                            <p class="card-text"><small class="text-muted">Género: {{ videojuego.genero }}</small></p>
+                            <p class="card-text"><small class="text-muted">Fecha: {{ videojuego.fecha|date:"d M Y" }}</small></p>
+                            <a href="{% url 'ver_videojuego' videojuego.id %}" class="btn btn-primary">Ver</a>
+                            {% if videojuego.user == request.user %}
+                                <a href="{% url 'eliminar_videojuego' videojuego.id %}" class="btn btn-danger">Eliminar</a>
+                                <a href="{% url 'editar_videojuego' videojuego.id %}" class="btn btn-secondary">Editar</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center">No hay videojuegos creados.</p>
+    {% endif %}
+</div>
+{% endblock main %}
