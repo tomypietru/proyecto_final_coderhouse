@@ -32,7 +32,9 @@ Ver Videojuego
         </li>
     </ul>
 {% endblock main %}
+
 {% block cuerpo %}
+
 <h3 class="text-center mt-4">Comentarios</h3>
     <div class="list-group mx-auto" style="max-width: 600px;">
         {% for comentario in comentarios %}
@@ -63,7 +65,7 @@ Ver Videojuego
             </div>
         {% endfor %}
     </div>
-
+    {% if request.user.is_authenticated %}
     <h3 class="text-center mt-4">Añadir un comentario</h3>
     <form method="post" class="mx-auto mb-4" style="max-width: 600px;">
         {% csrf_token %}
@@ -73,6 +75,11 @@ Ver Videojuego
         <button type="submit" class="btn btn-success">Añadir comentario</button>
     </form>
 </div>
+    {% else %}
+    <p>
+        <h2 class="text-center mt-4">Registrate para que tu puedas comentar!</h2>
+    </p>
 
+    {% endif %}
 {% endblock cuerpo %}
 
