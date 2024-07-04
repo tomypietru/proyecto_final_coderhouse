@@ -6,23 +6,23 @@ Ver Videojuego
 {% endblock titular %}
 
 {% block titulo_2 %}
-<h3 class="text-center mt-4">
+<h3 class="text-center mt-4 text-white">
     <p>Viendo a:</p>
-    {{videojuego}}
+    {{ videojuego }}
 </h3>
 {% endblock titulo_2 %}
 
 {% block main %}
-<div class="container mt-4">
+<div class="container mt-4" style="background-color: #000; color: #fff;">
     <ul class="list-group">
-        <li class="list-group-item">Nombre: {{ videojuego.nombre }}</li>
-        <li class="list-group-item">Género: {{ videojuego.genero }}</li>
-        <li class="list-group-item">
+        <li class="list-group-item bg-dark text-white">Nombre: {{ videojuego.nombre }}</li>
+        <li class="list-group-item bg-dark text-white">Género: {{ videojuego.genero }}</li>
+        <li class="list-group-item bg-dark text-white">
             Descripción:
             <p>{{ videojuego.descripcion }}</p>
         </li>
-        <li class="list-group-item">Fecha: {{ videojuego.fecha }}</li>
-        <li class="list-group-item">
+        <li class="list-group-item bg-dark text-white">Fecha: {{ videojuego.fecha }}</li>
+        <li class="list-group-item bg-dark text-white">
             Imagen:
             {% if videojuego.imagen %}
                 <img src="{{ videojuego.imagen.url }}" alt="{{ videojuego.nombre }}" class="img-fluid mx-auto d-block" style="max-height: 500px;">
@@ -31,41 +31,41 @@ Ver Videojuego
             {% endif %}
         </li>
     </ul>
+</div>
 {% endblock main %}
 
 {% block cuerpo %}
-
 <h3 class="text-center mt-4">Comentarios</h3>
-    <div class="list-group mx-auto" style="max-width: 600px;">
-        {% for comentario in comentarios %}
-            <div class="list-group-item list-group-item-action">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">{{ comentario.autor.username }}</h5>
-                    <small>{{ comentario.fecha|date:"d M Y, H:i" }}</small>
-                </div>
-                <p class="mb-1">{{ comentario.texto }}</p>
-                {% if request.user == comentario.autor %}
-                    <form method="post" action="{% url 'ver_videojuego' videojuego.pk %}" class="mb-2">
-                        {% csrf_token %}
-                        <input type="hidden" name="comentario_id" value="{{ comentario.pk }}">
-                        <input type="hidden" name="action" value="edit">
-                        <div class="form-group">
-                            <label for="texto-{{ comentario.pk }}">Editar comentario:</label>
-                            <textarea name="texto" id="texto-{{ comentario.pk }}" class="form-control">{{ comentario.texto }}</textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-sm mt-1">Guardar</button>
-                    </form>
-                    <form method="post" action="{% url 'ver_videojuego' videojuego.pk %}">
-                        {% csrf_token %}
-                        <input type="hidden" name="comentario_id" value="{{ comentario.pk }}">
-                        <input type="hidden" name="action" value="delete">
-                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                    </form>
-                {% endif %}
+<div class="list-group mx-auto" style="max-width: 600px;">
+    {% for comentario in comentarios %}
+        <div class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ comentario.autor.username }}</h5>
+                <small>{{ comentario.fecha|date:"d M Y, H:i" }}</small>
             </div>
-        {% endfor %}
-    </div>
-    {% if request.user.is_authenticated %}
+            <p class="mb-1">{{ comentario.texto }}</p>
+            {% if request.user == comentario.autor %}
+                <form method="post" action="{% url 'ver_videojuego' videojuego.pk %}" class="mb-2">
+                    {% csrf_token %}
+                    <input type="hidden" name="comentario_id" value="{{ comentario.pk }}">
+                    <input type="hidden" name="action" value="edit">
+                    <div class="form-group">
+                        <label for="texto-{{ comentario.pk }}">Editar comentario:</label>
+                        <textarea name="texto" id="texto-{{ comentario.pk }}" class="form-control">{{ comentario.texto }}</textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm mt-1">Guardar</button>
+                </form>
+                <form method="post" action="{% url 'ver_videojuego' videojuego.pk %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="comentario_id" value="{{ comentario.pk }}">
+                    <input type="hidden" name="action" value="delete">
+                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                </form>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+{% if request.user.is_authenticated %}
     <h3 class="text-center mt-4">Añadir un comentario</h3>
     <form method="post" class="mx-auto mb-4" style="max-width: 600px;">
         {% csrf_token %}
@@ -74,12 +74,7 @@ Ver Videojuego
         </div>
         <button type="submit" class="btn btn-success">Añadir comentario</button>
     </form>
-</div>
-    {% else %}
-    <p>
-        <h2 class="text-center mt-4">Registrate para que tu puedas comentar!</h2>
-    </p>
-
-    {% endif %}
+{% else %}
+    <h2 class="text-center mt-4">¡Regístrate para que tú puedas comentar!</h2>
+{% endif %}
 {% endblock cuerpo %}
-

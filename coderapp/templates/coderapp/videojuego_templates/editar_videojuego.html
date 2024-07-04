@@ -14,16 +14,26 @@ Editar Videojuego
 {% endblock titulo_2 %}
 
 {% block main %}
-
-<form action={% url "editar_videojuego" videojuego.id %} method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    
-    
-    {{form}}
-
-    <input type="submit" value="Actualizar"> 
-    
-</form>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card bg-dark text-white">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3>Formulario de Creación</h3>
+                </div>
+                <div class="card-body">
+                    <form action={% url "editar_videojuego" videojuego.id %} method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{form}}
+                        <div class="text-center mt-4">
+                            <input class="btn btn-warning btn-xl text-uppercase" type="submit" value="Actualizar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  
 
 {% endblock main %}
 

@@ -18,13 +18,7 @@ def inicio(request):
     return render(request,"coderapp/index.html")
 
 
-# class CrearVideoJuego(CreateView):
-#     model = VideoJuego
-#     form_class = CrearVideoJuegoFormulario
-#     template_name = "coderapp/videojuego_templates/crear_videojuego.html"
-#     success_url = reverse_lazy("videojuegos")
-#     # fields = ["nombre", "genero", "descripcion", "imagen"]
-    
+
 @login_required
 def crear_videojuego(request):
     if request.method == 'POST':
@@ -69,10 +63,7 @@ class EditarVideoJuego(LoginRequiredMixin, UpdateView):
             return HttpResponseForbidden("No tienes permiso para editar este videojuego.")
         return videojuego
      
-# class VerVideoJuego(DetailView):
-#     model = VideoJuego
-#     template_name = "coderapp/videojuego_templates/ver_videojuego.html"
-     
+
 def ver_videojuego(request, pk):
     videojuego = get_object_or_404(VideoJuego, pk=pk)
     comentarios = videojuego.comentarios.all()

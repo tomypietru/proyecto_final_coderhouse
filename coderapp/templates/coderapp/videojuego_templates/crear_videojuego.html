@@ -14,12 +14,25 @@ CREA TU VIDEOJUEGO!
 {% endblock titulo_2 %}         
 
 {% block main %}
-<form action={% url "crear" %} method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ formulario.as_p }}
-    
-    <input class="btn btn-primary btn-xl text-uppercase" type="submit" value="CREAR">
-    
-</form>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card bg-dark text-white">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3>Formulario de Creación</h3>
+                </div>
+                <div class="card-body">
+                    <form action="{% url 'crear' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ formulario.as_p }}
+                        <div class="text-center mt-4">
+                            <input class="btn btn-warning btn-xl text-uppercase" type="submit" value="Crear">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock main %}
 
