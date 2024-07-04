@@ -34,3 +34,6 @@ Esta es una pagina web para compartir y comentar videojuegos. Los usuarios puede
 ### Back-end
 - Python 
 - Django 
+
+## Video Demostracion 
+- https://www.youtube.com/watch?v=04iZ41vTcLs
