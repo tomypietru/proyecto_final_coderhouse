@@ -28,6 +28,9 @@
                             <strong>Apellido:</strong> {{ user.last_name }}
                         </li>
                         <li class="list-group-item">
+                            <strong>Biografía:</strong> {{ user.datosextra.biografia }}
+                        </li>
+                        <li class="list-group-item">
                             <strong>Unido:</strong> {{ user.date_joined|date:"F d, Y" }}
                         </li>
                     </ul>

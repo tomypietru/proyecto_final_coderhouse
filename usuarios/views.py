@@ -50,24 +50,15 @@ def ver_perfil(request):
 
 @login_required
 def editar_perfil(request):
-
     datosextra = request.user.datosextra
-    formulario = EditarPerfil(initial={'avatar': datosextra.avatar}, instance=request.user)
-
     if request.method == "POST":
-        formulario = EditarPerfil(request.POST, request.FILES , instance=request.user)
+        formulario = EditarPerfil(request.POST, request.FILES, instance=request.user)
         if formulario.is_valid():
             formulario.save()
-            avatar = formulario.cleaned_data.get('avatar')
-            if avatar:
-                datosextra.avatar = avatar
-            datosextra.save()
             return redirect('ver_perfil')
-
     else:
-        formulario = EditarPerfil(instance=request.user)
+        formulario = EditarPerfil(initial={'avatar': datosextra.avatar, 'biografia': datosextra.biografia}, instance=request.user)
     return render(request, 'usuarios/editar_perfil.html', {'formulario': formulario})
-
 class CambiarPassword(LoginRequiredMixin, PasswordChangeView):
     template_name = "usuarios/cambiar_pass.html"
     success_url = reverse_lazy("ver_perfil")
